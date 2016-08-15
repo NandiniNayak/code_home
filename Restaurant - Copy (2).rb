@@ -22,10 +22,10 @@ class Customer
     @menuList = Hash[1 => 20, 2=>15, 3 => 2, 4 =>5]
     @menu.each do |food,price|
       rows << [food,price]
-      table = Terminal::Table.new :title => "Kamath's Kitchen", :headings => ['food', 'price($)'], :rows => rows
+      table = Terminal::Table.new :title => "Kamath's Kitchen", :headings => ['food', 'price'], :rows => rows
     end
     puts "\e[33mWelcome to Kamath's Kitchen: Happy to serve you - Kindly place your order by entering the number against the food item\e[0m"
-    puts "\e[32mEnter 5 to get your bill\e[0m"
+    puts "\e[32menter 5 to get your bill\e[0m"
     puts table
   end
 
@@ -49,16 +49,19 @@ class Customer
     orderbill
   end
 end
+
 customer1 = Customer.new("","","")
+customer2 = Customer.new("","","",)
 until exit do
   customer1.menu
   command = gets.chomp.to_i
   case command
-    when 1,2,3,4
+  when 1,2,3,4
       customer1.placeOrder(command)
+      customer2.placeOrder(command)
      when 5
-        puts "We are delighted to have you at Kamath's Kitchen - here is your bill
-        \e[33m#{customer1.bill}$\e[0m"
+        puts "We are delighted to have you at Kamath's Kitchen  - here is the bill for customer 1
+        #{customer1.bill}$"
         exit = true
       else
         puts " invalid entry please try again"
